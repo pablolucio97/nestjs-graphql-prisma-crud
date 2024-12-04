@@ -18,6 +18,10 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DeletePhotoInput {
+  id: String!
+}
+
 input DeleteUserInput {
   id: String!
 }
@@ -33,6 +37,7 @@ input GetUserInput {
 type Mutation {
   createPhoto(data: CreatePhotoInput!): Photo!
   createUser(data: CreateUserInput!): User!
+  deletePhoto(data: DeletePhotoInput!): Photo
   deleteUser(data: DeleteUserInput!): User
   updatePhoto(data: UpdatePhotoInput!): Photo
   updateUser(data: UpdateUserInput!): User!

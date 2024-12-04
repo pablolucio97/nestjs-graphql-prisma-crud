@@ -1,6 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import {
   CreatePhotoInput,
+  DeletePhotoInput,
   GetPhotoInput,
   UpdatePhotoInput,
 } from '../GraphQLInputs/photoInput';
@@ -35,5 +36,10 @@ export class PhotoResolver {
   ): Promise<Photo | null> {
     const updatedPhoto = await this.photosService.updatePhoto(data);
     return updatedPhoto;
+  }
+
+  @Mutation(() => Photo, { name: 'deletePhoto', nullable: true })
+  async deletePhoto(@Args('data') data: DeletePhotoInput): Promise<void> {
+    await this.photosService.deletePhoto(data);
   }
 }

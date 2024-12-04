@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   CreatePhotoInput,
+  DeletePhotoInput,
   GetPhotoInput,
   UpdatePhotoInput,
 } from '../GraphQLInputs/photoInput';
@@ -46,5 +47,13 @@ export class PhotosService {
     });
 
     return updatedPhoto;
+  }
+
+  async deletePhoto(data: DeletePhotoInput): Promise<void> {
+    await this.PrismaService.photo.delete({
+      where: {
+        id: data.id,
+      },
+    });
   }
 }

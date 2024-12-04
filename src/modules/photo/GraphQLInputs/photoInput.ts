@@ -29,3 +29,9 @@ export class UpdatePhotoInput {
   @Field(() => Number)
   likes?: number;
 }
+
+@InputType()
+export class DeletePhotoInput {
+  @Field(() => String)
+  id: string;
+}
