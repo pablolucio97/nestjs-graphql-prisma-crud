@@ -11,3 +11,12 @@ export class CreateUserInput {
   @Field(() => String)
   email: string;
 }
+
+@InputType()
+export class UpdateUserInput {
+  @Field(() => String)
+  id: string;
+
+  @Field(() => String)
+  name: string;
+}

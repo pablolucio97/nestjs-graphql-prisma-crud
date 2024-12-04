@@ -9,10 +9,16 @@ input CreateUserInput {
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
+  updateUser(data: UpdateUserInput!): User!
 }
 
 type Query {
   getUsers: [User!]!
+}
+
+input UpdateUserInput {
+  id: String!
+  name: String!
 }
 
 """user"""

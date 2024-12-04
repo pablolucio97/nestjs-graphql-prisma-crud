@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../services/prisma';
-import { CreateUserInput } from '../GraphqQLInputs/userInput';
+import { CreateUserInput, UpdateUserInput } from '../GraphqQLInputs/userInput';
 import { User } from '../models/user.model';
 
 @Injectable()
@@ -14,5 +14,16 @@ export class UsersService {
   async listUsers(): Promise<User[]> {
     const users = await this.PrismaService.user.findMany();
     return users;
+  }
+
+  async update(data: UpdateUserInput): Promise<User> {
+    const updatedUser = await this.PrismaService.user.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    return updatedUser;
   }
 }
