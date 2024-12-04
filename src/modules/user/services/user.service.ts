@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../services/prisma';
-import { CreateUserInput, UpdateUserInput } from '../GraphqQLInputs/userInput';
+import {
+  CreateUserInput,
+  GetUserInput,
+  UpdateUserInput,
+} from '../GraphqQLInputs/userInput';
 import { User } from '../models/user.model';
 
 @Injectable()
@@ -25,5 +29,15 @@ export class UsersService {
     });
 
     return updatedUser;
+  }
+
+  async getUser(data: GetUserInput): Promise<User | null> {
+    const user = await this.PrismaService.user.findUnique({
+      where: {
+        id: data.id,
+      },
+    });
+
+    return user;
   }
 }

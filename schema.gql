@@ -7,12 +7,17 @@ input CreateUserInput {
   name: String!
 }
 
+input GetUserInput {
+  id: String!
+}
+
 type Mutation {
   createUser(data: CreateUserInput!): User!
   updateUser(data: UpdateUserInput!): User!
 }
 
 type Query {
+  getUser(data: GetUserInput!): User!
   getUsers: [User!]!
 }
 

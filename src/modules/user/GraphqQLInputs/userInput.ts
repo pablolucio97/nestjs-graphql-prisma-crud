@@ -20,3 +20,9 @@ export class UpdateUserInput {
   @Field(() => String)
   name: string;
 }
+
+@InputType()
+export class GetUserInput {
+  @Field(() => String)
+  id: string;
+}
