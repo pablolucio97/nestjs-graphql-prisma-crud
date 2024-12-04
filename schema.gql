@@ -22,6 +22,10 @@ input DeleteUserInput {
   id: String!
 }
 
+input GetPhotoInput {
+  id: String!
+}
+
 input GetUserInput {
   id: String!
 }
@@ -43,7 +47,8 @@ type Photo {
 }
 
 type Query {
-  getUser(data: GetUserInput!): User!
+  getPhoto(data: GetPhotoInput!): Photo!
+  getUser(data: GetUserInput!): User
   getUsers: [User!]!
   listPhotos: [Photo!]!
 }

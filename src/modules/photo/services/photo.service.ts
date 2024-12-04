@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePhotoInput } from '../GraphQLInputs/photoInput';
+import { CreatePhotoInput, GetPhotoInput } from '../GraphQLInputs/photoInput';
 import { Photo } from '../models/photo.model';
 import { PrismaService } from './../../../services/prisma';
 
@@ -21,5 +21,15 @@ export class PhotosService {
   async list(): Promise<Photo[]> {
     const photos = await this.PrismaService.photo.findMany();
     return photos;
+  }
+
+  async getPhoto(data: GetPhotoInput): Promise<Photo | null> {
+    const photo = await this.PrismaService.photo.findUnique({
+      where: {
+        id: data.id,
+      },
+    });
+
+    return photo;
   }
 }

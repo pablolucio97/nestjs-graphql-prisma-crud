@@ -11,3 +11,9 @@ export class CreatePhotoInput {
   @Field(() => Boolean)
   isPrivate: boolean;
 }
+
+@InputType()
+export class GetPhotoInput {
+  @Field(() => String)
+  id: string;
+}
