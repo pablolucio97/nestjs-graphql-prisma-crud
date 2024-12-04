@@ -10,6 +10,9 @@ export class CreatePhotoInput {
 
   @Field(() => Boolean)
   isPrivate: boolean;
+
+  @Field(() => String)
+  userId: string;
 }
 
 @InputType()
@@ -34,4 +37,10 @@ export class UpdatePhotoInput {
 export class DeletePhotoInput {
   @Field(() => String)
   id: string;
+}
+
+@InputType()
+export class GetPhotosByUserInput {
+  @Field(() => String)
+  userId: string;
 }

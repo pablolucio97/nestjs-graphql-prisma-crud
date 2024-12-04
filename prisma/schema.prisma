@@ -15,9 +15,10 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String
+  id     String  @id @default(uuid())
+  name   String
+  email  String
+  photos Photo[]
 }
 
 model Photo {
@@ -26,4 +27,6 @@ model Photo {
   likes     Int
   isPrivate Boolean
   postedAt  DateTime @default(now())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
 }

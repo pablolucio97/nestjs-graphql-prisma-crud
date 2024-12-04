@@ -3,6 +3,7 @@ import {
   CreatePhotoInput,
   DeletePhotoInput,
   GetPhotoInput,
+  GetPhotosByUserInput,
   UpdatePhotoInput,
 } from '../GraphQLInputs/photoInput';
 import { Photo } from '../models/photo.model';
@@ -22,6 +23,14 @@ export class PhotoResolver {
   async getPhoto(@Args('data') data: GetPhotoInput): Promise<Photo | null> {
     const photo = await this.photosService.getPhoto(data);
     return photo;
+  }
+
+  @Query(() => [Photo], { name: 'getPhotosByUser' })
+  async getPhotosByUser(
+    @Args('data') data: GetPhotosByUserInput,
+  ): Promise<Photo[]> {
+    const photos = await this.photosService.getPhotosByUser(data);
+    return photos;
   }
 
   @Mutation(() => Photo, { name: 'createPhoto' })

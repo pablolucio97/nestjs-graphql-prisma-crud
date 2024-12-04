@@ -3,6 +3,7 @@ import {
   CreatePhotoInput,
   DeletePhotoInput,
   GetPhotoInput,
+  GetPhotosByUserInput,
   UpdatePhotoInput,
 } from '../GraphQLInputs/photoInput';
 import { Photo } from '../models/photo.model';
@@ -18,6 +19,7 @@ export class PhotosService {
         likes: data.likes,
         isPrivate: data.isPrivate,
         postedAt: new Date(),
+        userId: data.userId,
       },
     });
     return newPhoto;
@@ -55,5 +57,14 @@ export class PhotosService {
         id: data.id,
       },
     });
+  }
+
+  async getPhotosByUser(data: GetPhotosByUserInput): Promise<Photo[]> {
+    const photos = await this.PrismaService.photo.findMany({
+      where: {
+        userId: data.userId,
+      },
+    });
+    return photos;
   }
 }

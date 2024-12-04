@@ -6,6 +6,7 @@ input CreatePhotoInput {
   isPrivate: Boolean!
   likes: Float!
   url: String!
+  userId: String!
 }
 
 input CreateUserInput {
@@ -30,6 +31,10 @@ input GetPhotoInput {
   id: String!
 }
 
+input GetPhotosByUserInput {
+  userId: String!
+}
+
 input GetUserInput {
   id: String!
 }
@@ -47,13 +52,15 @@ type Mutation {
 type Photo {
   id: ID!
   isPrivate: Boolean!
-  likes: Float!
+  likes: Int!
   postedAt: DateTime!
   url: String!
+  userId: String!
 }
 
 type Query {
   getPhoto(data: GetPhotoInput!): Photo!
+  getPhotosByUser(data: GetPhotosByUserInput!): [Photo!]!
   getUser(data: GetUserInput!): User
   getUsers: [User!]!
   listPhotos: [Photo!]!

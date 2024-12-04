@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType({ description: 'photo' })
 export class Photo {
@@ -8,7 +8,7 @@ export class Photo {
   @Field(() => String)
   url: string;
 
-  @Field(() => Number)
+  @Field(() => Int)
   likes: number;
 
   @Field(() => Boolean)
@@ -16,4 +16,7 @@ export class Photo {
 
   @Field(() => Date)
   postedAt: Date;
+
+  @Field(() => String)
+  userId: string | null;
 }
