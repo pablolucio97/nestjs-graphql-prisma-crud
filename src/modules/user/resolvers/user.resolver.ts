@@ -1,13 +1,14 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import {
   CreateUserInput,
+  DeleteUserInput,
   GetUserInput,
   UpdateUserInput,
 } from '../GraphqQLInputs/userInput';
 import { User, User as UserModel } from '../models/user.model';
 import { UsersService } from '../services/user.service';
 
-@Resolver((of: unknown) => UserModel)
+@Resolver(() => UserModel)
 export class UserResolver {
   constructor(private usersService: UsersService) {}
 
@@ -33,5 +34,10 @@ export class UserResolver {
   async updateUser(@Args('data') data: UpdateUserInput): Promise<User> {
     const updatedUser = await this.usersService.update(data);
     return updatedUser;
+  }
+
+  @Mutation(() => UserModel, { nullable: true })
+  async deleteUser(@Args('data') data: DeleteUserInput): Promise<void> {
+    await this.usersService.deleteUser(data);
   }
 }

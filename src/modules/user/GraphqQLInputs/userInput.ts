@@ -26,3 +26,9 @@ export class GetUserInput {
   @Field(() => String)
   id: string;
 }
+
+@InputType()
+export class DeleteUserInput {
+  @Field(() => String)
+  id: string;
+}

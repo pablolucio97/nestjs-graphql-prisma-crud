@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../services/prisma';
 import {
   CreateUserInput,
+  DeleteUserInput,
   GetUserInput,
   UpdateUserInput,
 } from '../GraphqQLInputs/userInput';
@@ -39,5 +40,13 @@ export class UsersService {
     });
 
     return user;
+  }
+
+  async deleteUser(data: DeleteUserInput): Promise<void> {
+    await this.PrismaService.user.delete({
+      where: {
+        id: data.id,
+      },
+    });
   }
 }

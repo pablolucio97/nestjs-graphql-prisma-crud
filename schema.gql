@@ -7,12 +7,17 @@ input CreateUserInput {
   name: String!
 }
 
+input DeleteUserInput {
+  id: String!
+}
+
 input GetUserInput {
   id: String!
 }
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
+  deleteUser(data: DeleteUserInput!): User
   updateUser(data: UpdateUserInput!): User!
 }
 
