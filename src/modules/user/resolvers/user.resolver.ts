@@ -5,38 +5,38 @@ import {
   GetUserInput,
   UpdateUserInput,
 } from '../GraphqQLInputs/userInput';
-import { User, User as UserModel } from '../models/user.model';
+import { User } from '../models/user.model';
 import { UsersService } from '../services/user.service';
 
-@Resolver(() => UserModel)
+@Resolver(() => User)
 export class UserResolver {
   constructor(private usersService: UsersService) {}
 
-  @Query(() => [UserModel], { name: 'getUsers' })
+  @Query(() => [User], { name: 'getUsers' })
   async listUsers(): Promise<User[]> {
     const users = await this.usersService.listUsers();
     return users;
   }
 
-  @Query(() => UserModel, { name: 'getUser' })
+  @Query(() => User, { name: 'getUser' })
   async getUser(@Args('data') data: GetUserInput): Promise<User | null> {
     const user = await this.usersService.getUser(data);
     return user;
   }
 
-  @Mutation(() => UserModel)
+  @Mutation(() => User)
   async createUser(@Args('data') data: CreateUserInput): Promise<User> {
     const user = await this.usersService.create(data);
     return user;
   }
 
-  @Mutation(() => UserModel)
+  @Mutation(() => User)
   async updateUser(@Args('data') data: UpdateUserInput): Promise<User> {
     const updatedUser = await this.usersService.update(data);
     return updatedUser;
   }
 
-  @Mutation(() => UserModel, { nullable: true })
+  @Mutation(() => User, { nullable: true })
   async deleteUser(@Args('data') data: DeleteUserInput): Promise<void> {
     await this.usersService.deleteUser(data);
   }
