@@ -17,4 +17,9 @@ export class PhotosService {
     });
     return newPhoto;
   }
+
+  async list(): Promise<Photo[]> {
+    const photos = await this.PrismaService.photo.findMany();
+    return photos;
+  }
 }

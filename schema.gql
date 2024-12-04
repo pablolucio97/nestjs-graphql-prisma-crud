@@ -45,6 +45,7 @@ type Photo {
 type Query {
   getUser(data: GetUserInput!): User!
   getUsers: [User!]!
+  listPhotos: [Photo!]!
 }
 
 input UpdateUserInput {
