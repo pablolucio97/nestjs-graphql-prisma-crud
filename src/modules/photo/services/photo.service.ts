@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePhotoInput, GetPhotoInput } from '../GraphQLInputs/photoInput';
+import {
+  CreatePhotoInput,
+  GetPhotoInput,
+  UpdatePhotoInput,
+} from '../GraphQLInputs/photoInput';
 import { Photo } from '../models/photo.model';
 import { PrismaService } from './../../../services/prisma';
 
@@ -31,5 +35,16 @@ export class PhotosService {
     });
 
     return photo;
+  }
+
+  async updatePhoto(data: UpdatePhotoInput): Promise<Photo | null> {
+    const updatedPhoto = await this.PrismaService.photo.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    return updatedPhoto;
   }
 }

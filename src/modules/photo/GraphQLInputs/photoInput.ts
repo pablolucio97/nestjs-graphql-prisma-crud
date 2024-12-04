@@ -17,3 +17,15 @@ export class GetPhotoInput {
   @Field(() => String)
   id: string;
 }
+
+@InputType()
+export class UpdatePhotoInput {
+  @Field(() => String)
+  id: string;
+
+  @Field(() => Boolean)
+  isPrivate: boolean;
+
+  @Field(() => Number)
+  likes?: number;
+}
